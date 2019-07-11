@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #wrap{
+            height: 470px;
+            width: 590px;
+            border: black solid 1px;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+        }
+        #wrap div{
+            height: 470px;
+            width: 590px;
+            position: absolute;
+            left: 590px;
+            top: 0;
+        }
+        #wrap div:nth-child(1){
+            background-image: url("img/001.png");
+        }
+        #wrap div:nth-child(2){
+            background-image: url("img/002.png");
+        }
+        #wrap div:nth-child(3){
+            background-image: url("img/003.png");
+        }
+        #wrap div:nth-child(4){
+            background-image: url("img/004.png");
+        }
+        @keyframes in {
+            from{
+                left: 590px;
+            }
+            to{
+                left: 0px;
+            }
+        }
+        @keyframes out {
+            from{
+                left: 0px;
+            }
+            to{
+                left: -590px;
+            }
+        }
+        #wrap .a{
+            animation: in  1s;
+            left: 0px;
+        }
+        #wrap .b{
+            animation: out  1s;
+            left: 590px;
+        }
+        #wrap ul{
+            list-style: none;
+            position: absolute;
+            bottom: 20px;
+            right: 255px;
+        }
+        #wrap ul li{
+            width: 10px;
+            height: 10px;
+            background-color: #aaaaaa;
+            border-radius: 50%;
+            float: left;
+            margin-left: 10px;
+            cursor: pointer;/*让鼠标表成手*/
+        }
+        #wrap ul li:hover{
+            background-color: red;
+        }
+        #x{
+            height: 470px;
+            width: 200px;
+            border: black 1px solid;
+            float: left;
+            position: absolute;
+            left: 200px;
+        }
+        dl{
+            width: 200px;
+        }
+        dl dt,dl dd{
+            height: 30px;
+            color: red;
+            line-height: 40px;
+        }
+        dl dd{
+            padding-left: 150px;
+            display: none;
+        }
+        dl dt{
+            padding-left: 100px;
+            cursor: pointer;
+        }
+        #x dl dt:hover{
+            color: blue;
+        }
+        .aa{
+            height: 150px;
+            width: 190px;
+            border: black 1px solid;
+            float: left;
+            position: absolute;
+            left: 1040px;
+            bottom: 605px;
+            background-image: url("img/0001.png");
+        }
+        .bb{
+            height: 150px;
+            width: 190px;
+            border: black 1px solid;
+            float: left;
+            position: absolute;
+            left: 1040px;
+            bottom: 445px;
+            background-image: url("img/0002.png");
+        }
+        .cc{
+            height: 150px;
+            width: 190px;
+            border: black 1px solid;
+            float: left;
+            position: absolute;
+            left: 1040px;
+            bottom: 285px;
+            background-image: url("img/0003.png");
+        }
+    </style>
+</head>
+<body>
+<div id="x">
+    <dl>
+        <dt>家电</dt>
+        <dd>空调</dd>
+        <dd>电视</dd>
+        <dd>洗衣机</dd>
+    </dl>
+    <dl>
+        <dt>手机</dt>
+        <dd>OPPO</dd>
+        <dd>华为</dd>
+        <dd>vivo</dd>
+    </dl>
+    <dl>
+        <dt>男装</dt>
+        <dd>短袖</dd>
+        <dd>衬衣</dd>
+        <dd>牛仔裤</dd>
+    </dl>
+</div>
+<div id="wrap">
+    <div class="a"></div>
+    <div class="b"></div>
+    <div class="b"></div>
+    <div class="b"></div>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<div class="aa"></div>
+<div class="bb"></div>
+<div class="cc"></div>
+<script src="jquery-3.4.1.min.js"></script>
+<script>
+    $(function () {
+        $("dl dt,dl dd").click(function () {
+            $(this).show().siblings().toggle().parent().siblings().children("dd").hide()
+        })
+        $("#wrap ul li").mousemove(function () {
+            //获取当前元素的数组下标
+            var index = $(this).index()
+            $("#wrap div").eq(index).addClass("a").removeClass("b").siblings("div").addClass("b").removeClass("a")
+        });
+        var i=0;
+        setInterval(function () {
+            i++;
+            if (i>4){
+                i=0;
+            }
+            $("#wrap div").eq(i).addClass("a").removeClass("b").siblings("div").addClass("b").removeClass("a")
+        },1500)
+    })
+</script>
+</body>
+</html>
